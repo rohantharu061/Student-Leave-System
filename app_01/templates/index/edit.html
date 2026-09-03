@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Edit{% endblock title %}
+{% block content %}
+<h1 class="alert alert-success text-center">UPDATE DETAILS</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form method="POST" action="{% url 'edit' data.id  %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Roll Number</label>
+                <input type="number" value="{{data.roll_number}}" name="roll_number" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                <input type="text" value="{{data.full_name}}" name="full_name" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Faculty</label>
+                <select name="faculty" id="faculty">
+                    <option value="disabled selected">Select any faculty</option>
+                    <option>Computer Engineering</option>
+                    <option>Civil Engineering</option>
+                    <option>Electrical Engineering</option>
+                    <option>Bsc.CSIT</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Semester</label>
+                <input type="number" value="{{data.semester}}" name="semester" form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Leave Type</label>
+                <select name="Leave_type" id="reason">
+                    <option value="disabled selected">Select any reason</option>
+                    <option>Medical</option>
+                    <option>Personal</option>
+                    <option>Others</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Reason for leave</label>
+                <input type="reason" value="{{data.reason}}" name="reason" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Start Date</label>
+                <input type="date" value="{{data.start_date|date:'Y-m-d'}}" name="start_date" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">End Date</label>
+                <input type="date" value="{{data.end_date|date:'Y-m-d'}}" name="end_date" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Guardian Contact</label>
+                <input type="number" value="{{data.guardian_contact}}" name="guardian_contact" class="form-control"
+                    id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Student_mail</label>
+                <input type="email" value="{{data.student_mail}}" name="student_mail" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-3">
+
+    </div>
+
+</div>
+
+{% endblock content %}

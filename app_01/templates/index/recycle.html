@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Recycle Bin{% endblock title %}
+{% block content %}
+<h1 class="alert alert-success text-center">RECYCLE BIN</h1>
+<!-- {% if messages%}
+{% for message in messages%}
+<div class="alert alert-secondary text-center" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %} -->
+<div id="timer">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} text-center fs-4">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    setTime0ut(function () {
+        var time = document.getElementById("timer")
+        if (time) {
+            time.style.display = 'none';
+        }
+    }, 3000)
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <table class="table table-success table-striped-columns">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Roll no</th>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Faculty</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Leave_type</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">guardian_contact</th>
+                        <th scope="col">student_mail</th>
+                        <th scope="col">Operations</th>
+
+                    </tr>
+                <tbody>
+                    {% for leave in student_leave %}
+                    <tr>
+                        <th>{{forloop.counter}}</th>
+
+                        <td>{{leave.roll_number}}</td>
+                        <td>{{leave.full_name}}</td>
+                        <td>{{leave.faculty}}</td>
+                        <td>{{leave.semester}}</td>
+                        <td>{{leave.start_date}}</td>
+                        <td>{{leave.end_date}}</td>
+                        <td>{{leave.Leave_type}}</td>
+                        <td>{{leave.reason}}</td>
+                        <td>{{leave.guardian_contact}}</td>
+                        <td>{{leave.student_mail}}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+
+                                <a href="{% url 'restore' leave.id %}"><button type="button" class="btn btn-danger">
+                                        Restore</button></a>
+                                <a href="{% url 'delete_data' leave.id %}"><button type="button"
+                                        class="btn btn-danger"><i
+                                            class="fa-solid fa-delete-left"></i>Delete</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </thead>
+            </table>
+        </div>
+        <div class=" d-flex justify-content-end ">
+            <a href="{% url 'restore_all' %}" class="mx-5 px-10"><button class="btn btn-danger " type="button"><i
+                        class="fa-solid fa-recycle"></i>Restore All</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

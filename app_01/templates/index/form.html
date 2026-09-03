@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Form Page{% endblock title %}
+
+{% block content %}
+<div id="timer">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} text-center fs-4">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    setTime0ut(function () {
+        var time = document.getElementById("timer")
+        if (time) {
+            time.style.display = 'none';
+        }
+    }, 3000)
+</script>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-10 col-lg-8">
+
+                <div class="card shadow border-0">
+
+                    <!-- Header -->
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h3 class="mb-0">Student Leave Application</h3>
+                        <small>Fill in the details below</small>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <form method="POST" action="{% url 'form' %}">
+                            {% csrf_token %}
+
+                            <!-- Roll Number + Full Name -->
+                            <div class="row g-3">
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Roll Number
+                                    </label>
+
+                                    <input type="text" name="roll_number" class="form-control" maxlength="6"
+                                        placeholder="Enter roll number" required>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Full Name
+                                    </label>
+
+                                    <input type="text" name="full_name" class="form-control" maxlength="100"
+                                        placeholder="Enter full name" required>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Faculty + Semester -->
+                            <div class="row g-3 mt-1">
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Faculty
+                                    </label>
+
+                                    <input type="text" name="faculty" class="form-control" maxlength="100"
+                                        placeholder="e.g. BSc CSIT" required>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Semester
+                                    </label>
+
+                                    <select name="semester" class="form-select" required>
+
+                                        <option value="">Select Semester</option>
+                                        <option value="1">1st Semester</option>
+                                        <option value="2">2nd Semester</option>
+                                        <option value="3">3rd Semester</option>
+                                        <option value="4">4th Semester</option>
+                                        <option value="5">5th Semester</option>
+                                        <option value="6">6th Semester</option>
+                                        <option value="7">7th Semester</option>
+                                        <option value="8">8th Semester</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Start Date + End Date -->
+                            <div class="row g-3 mt-1">
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        Start Date
+                                    </label>
+
+                                    <input type="date" name="start_date" class="form-control" required>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        End Date
+                                    </label>
+
+                                    <input type="date" name="end_date" class="form-control" required>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Leave Type -->
+                            <div class="mt-3">
+
+                                <label class="form-label fw-semibold">
+                                    Leave Type
+                                </label>
+
+                                <select name="leave_type" class="form-select" required>
+
+                                    <option value="">Select Leave Type</option>
+                                    <option value="Sick Leave">Sick Leave</option>
+                                    <option value="Casual Leave">Casual Leave</option>
+                                    <option value="Emergency Leave">Emergency Leave</option>
+                                    <option value="Other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Reason -->
+                            <div class="mt-3">
+
+                                <label class="form-label fw-semibold">
+                                    Reason
+                                </label>
+
+                                <textarea name="reason" class="form-control" rows="4"
+                                    placeholder="Enter reason for leave..." required></textarea>
+
+                            </div>
+
+
+                            <!-- Guardian Contact + Email -->
+                            <div class="row g-3 mt-1">
+
+                                <div class="col-12 col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Guardian Contact
+                                    </label>
+
+                                    <input type="tel" name="guardian_contact" class="form-control" maxlength="14"
+                                        placeholder="Enter guardian contact" required>
+
+                                </div>
+
+                                <div class="col-12 col-md-6">
+
+                                    <label class="form-label fw-semibold">
+                                        Student Email
+                                    </label>
+
+                                    <input type="email" name="student_mail" class="form-control"
+                                        placeholder="example@gmail.com" required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Buttons -->
+                            <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+
+                                <button type="submit" class="btn btn-primary flex-fill">
+                                    Submit Application
+                                </button>
+
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{% endblock content %}
